@@ -1,8 +1,10 @@
+package io.github.cclassen.oakdsl
+
 import io.github.cclassen.oakdsl.builder.OpenApiBuilder
 import org.junit.jupiter.api.Test
 import java.io.StringWriter
 
-class EndpointTest {
+class DocumentTest {
 
     @Test
     fun methodsTest() {
