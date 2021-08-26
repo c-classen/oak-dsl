@@ -1,11 +1,13 @@
 # 🌳 OpenAPI Kotlin Domain Specific Language
 
+![Maven Central Badge](https://img.shields.io/maven-central/v/io.github.c-classen.oakdsl/oakdsl)
+
 This Kotlin library offers a concise way to define your OpenAPI specification.
 For example, it is able to turn this code which defines some CRUD endpoints to manage a todo list
 
 ```kotlin
 @file:CompilerOptions("-jvm-target", "1.8")
-@file:DependsOn("io.github.c-classen.oakdsl:oakdsl:VERSION")
+@file:DependsOn("io.github.c-classen.oakdsl:oakdsl:0.1.1")
 
 import io.github.cclassen.oakdsl.builder.OpenApiBuilder
 
