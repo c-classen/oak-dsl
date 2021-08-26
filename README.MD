@@ -382,17 +382,15 @@ This is a convenient way to put some custom extensions on your endpoints that de
 
 ```kotlin
 globalFilterForMarked(MicroService.A) {
-    if (endpoint.getMark<MicroService>() == MicroService.A) {
-        endpoint.additionalYamlProperties["x-my-extension"] = YamlMap.build {
-            map("my-map") {
-                array("my-array") {
-                    string("SomeString")
-                    value("SomeValue")
-                }
-                shortArray("my-short-array", listOf(1, true, -1.3, "Test"))
-                shortStringArray("my-string-array", listOf("a", "b"))
-                string("someString", "Teststring")
+    endpoint.additionalYamlProperties["x-my-extension"] = YamlMap.build {
+        map("my-map") {
+            array("my-array") {
+                string("SomeString")
+                value("SomeValue")
             }
+            shortArray("my-short-array", listOf(1, true, -1.3, "Test"))
+            shortStringArray("my-string-array", listOf("a", "b"))
+            string("someString", "Teststring")
         }
     }
 }

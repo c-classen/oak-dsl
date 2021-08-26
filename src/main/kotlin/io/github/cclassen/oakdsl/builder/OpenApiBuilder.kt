@@ -186,6 +186,17 @@ class OpenApiBuilder: ParameterReceiver {
         }
     }
 
+    /**
+     * Apply the given filter to all endpoints not marked with an object of the given type
+     */
+    fun globalFilterForNotMarked(notMarkedWith: KClass<*>, filter: EndpointItem.() -> Unit) {
+        globalFilter {
+            if (!endpoint.isMarked(notMarkedWith)) {
+                filter(this)
+            }
+        }
+    }
+
     fun endpointFilter(filter: EndpointItem.() -> Unit): EndpointFilter {
         return EndpointFilter(filter, this)
     }
