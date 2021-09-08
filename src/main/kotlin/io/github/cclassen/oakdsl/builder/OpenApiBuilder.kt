@@ -97,6 +97,19 @@ class OpenApiBuilder: ParameterReceiver {
         return endpoint<R>("delete", operationId, contentType, returnType)
     }
 
+    fun options(operationId: String): EndpointPathBuilder {
+        return endpoint("options", operationId)
+    }
+
+    @OptIn(ExperimentalStdlibApi::class)
+    inline fun <reified R> options(
+        operationId: String,
+        contentType: String = "application/json",
+        returnType: KType = typeOf<R>()
+    ): EndpointPathBuilder {
+        return endpoint<R>("options", operationId, contentType, returnType)
+    }
+
     fun endpoint(method: String, operationId: String): EndpointPathBuilder {
         return endpoint<Unit>(method, operationId)
     }
@@ -245,6 +258,19 @@ class OpenApiBuilder: ParameterReceiver {
     }
 
     companion object {
+
+        fun base(content: OpenApiBuilder.() -> Unit): OpenApiBuilder.() -> Unit {
+            return content
+        }
+
+        fun file(filename: String, base: OpenApiBuilder.() -> Unit, content: OpenApiBuilder.() -> Unit) {
+            File(filename).bufferedWriter().use { writer ->
+                write(writer) {
+                    base(this)
+                    content(this)
+                }
+            }
+        }
 
         fun file(filename: String, content: OpenApiBuilder.() -> Unit) {
             File(filename).bufferedWriter().use { writer ->
