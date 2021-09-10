@@ -2,6 +2,7 @@ package io.github.cclassen.oakdsl.component
 
 import io.github.cclassen.oakdsl.annotation.Description
 import io.github.cclassen.oakdsl.model.schema.*
+import java.util.*
 import kotlin.reflect.KClass
 import kotlin.reflect.KParameter
 import kotlin.reflect.KType
@@ -42,6 +43,7 @@ class TypeResolver {
             Double::class.qualifiedName -> PrimitiveSchema("number", "f64")
             String::class.qualifiedName -> PrimitiveSchema("string")
             ByteArray::class.qualifiedName -> PrimitiveSchema("string", "binary")
+            Base64::class.qualifiedName -> PrimitiveSchema("string", "byte")
             else -> null
         }
     }
