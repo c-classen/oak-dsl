@@ -7,7 +7,7 @@ For example, it is able to turn this code which defines some CRUD endpoints to m
 
 ```kotlin
 @file:CompilerOptions("-jvm-target", "1.8")
-@file:DependsOn("io.github.c-classen.oakdsl:oakdsl:0.1.1")
+@file:DependsOn("io.github.c-classen.oakdsl:oakdsl:0.1.3")
 
 import io.github.cclassen.oakdsl.builder.OpenApiBuilder
 

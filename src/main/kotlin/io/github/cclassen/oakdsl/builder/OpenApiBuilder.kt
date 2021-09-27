@@ -169,6 +169,10 @@ class OpenApiBuilder: ParameterReceiver {
         components.typeResolver.customClassResolvers[T::class.java] = resolver
     }
 
+    inline fun <reified T, reified U> customResolve() {
+        customResolve<T> { components.resolveClass(U::class) }
+    }
+
     fun globalFilter(filter: EndpointFilter) {
         globalFilters.add(filter)
     }
