@@ -44,6 +44,7 @@ class TypeResolver {
             String::class.qualifiedName -> PrimitiveSchema("string")
             ByteArray::class.qualifiedName -> PrimitiveSchema("string", "binary")
             Base64::class.qualifiedName -> PrimitiveSchema("string", "byte")
+            UUID::class.qualifiedName -> PrimitiveSchema("string", "uuid")
             else -> null
         }
     }
