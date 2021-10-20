@@ -35,7 +35,7 @@ class EndpointBuilder(
         } catch (ex: RuntimeException) {
             throw RuntimeException("Failed to resolve type of request body", ex)
         }
-        val bodyContent = BodyContent(contentType, schema)
+        val bodyContent = BodyContent(mutableMapOf(contentType to schema))
         val requestBody = RequestBody(description, bodyContent, required)
         endpoint.requestBody = requestBody
     }
@@ -67,7 +67,7 @@ class EndpointBuilder(
     ) {
         val response = Response(description)
         if (schema != null) {
-            response.content = BodyContent(contentType, schema)
+            response.content = BodyContent(mutableMapOf(contentType to schema))
         }
         val builder = ResponseBuilder(response)
         content?.let { it(builder) }

@@ -12,6 +12,8 @@ class RequestBody(
     override fun serializeFixed(serializer: YamlSerializer) {
         serializer.boolean("required", required)
         serializer.string("description", description)
-        content.serialize(serializer)
+        serializer.entry("content") {
+            content.serialize(serializer)
+        }
     }
 }

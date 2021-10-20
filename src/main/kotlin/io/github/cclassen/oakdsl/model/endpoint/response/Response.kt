@@ -10,6 +10,10 @@ class Response(
 
     override fun serializeFixed(serializer: YamlSerializer) {
         serializer.string("description", description)
-        content?.serializeFixed(serializer)
+        content?.let {
+            serializer.entry("content") {
+                it.serialize(serializer)
+            }
+        }
     }
 }

@@ -24,7 +24,7 @@ class ResponseResolver {
         }
         val response = Response(description)
         if (schema != null) {
-            response.content = BodyContent(contentType, schema)
+            response.content = BodyContent(mutableMapOf(contentType to schema))
         }
         val builder = ResponseBuilder(response)
         content?.let { it(builder) }

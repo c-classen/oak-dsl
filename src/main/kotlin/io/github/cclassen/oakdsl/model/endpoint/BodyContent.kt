@@ -5,12 +5,11 @@ import io.github.cclassen.oakdsl.model.schema.Schema
 import io.github.cclassen.oakdsl.serialize.YamlSerializer
 
 class BodyContent(
-    var contentType: String,
-    var schema: Schema
+    var variants: MutableMap<String, Schema>
 ): YamlMapBase() {
 
     override fun serializeFixed(serializer: YamlSerializer) {
-        serializer.entry("content") {
+        for ((contentType, schema) in variants) {
             serializer.entry(contentType) {
                 serializer.entry("schema") {
                     schema.serialize(serializer)

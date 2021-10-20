@@ -23,7 +23,7 @@ class EndpointPathBuilder(
     init {
         val response = Response("Success")
         if (returnType != null) {
-            response.content = BodyContent(contentType, returnType)
+            response.content = BodyContent(mutableMapOf(contentType to returnType))
         }
         endpoint.responses["200"] = response
     }
