@@ -147,9 +147,10 @@ class OpenApiBuilder: ParameterReceiver {
         name: String,
         required: Boolean = true,
         description: String? = null,
+        kind: String? = null,
         noinline content: (ParameterBuilder.() -> Unit)? = null
     ): ParameterBuilder {
-        return param(name, typeOf<R>(), required, description, content)
+        return param(name, typeOf<R>(), required, description, kind, content)
     }
 
     override fun param(
@@ -157,9 +158,10 @@ class OpenApiBuilder: ParameterReceiver {
         type: KType,
         required: Boolean,
         description: String?,
+        kind: String?,
         content: (ParameterBuilder.() -> Unit)?
     ): ParameterBuilder {
-        val parameter = Parameter("path", name, required, components.resolveType(type), description)
+        val parameter = Parameter(kind ?: "path", name, required, components.resolveType(type), description)
         val builder = ParameterBuilder(parameter)
         content?.let { it(builder) }
         return builder

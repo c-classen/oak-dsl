@@ -87,9 +87,10 @@ class EndpointBuilder(
         name: String,
         required: Boolean = true,
         description: String? = null,
+        kind: String? = null,
         noinline content: (ParameterBuilder.() -> Unit)? = null
     ): ParameterBuilder {
-        return param(name, typeOf<R>(), required, description, content)
+        return param(name, typeOf<R>(), required, description, kind, content)
     }
 
     override fun param(
@@ -97,9 +98,10 @@ class EndpointBuilder(
         type: KType,
         required: Boolean,
         description: String?,
+        kind: String?,
         content: (ParameterBuilder.() -> Unit)?
     ): ParameterBuilder {
-        val parameter = Parameter("query", name, required, components.resolveType(type), description)
+        val parameter = Parameter(kind ?: "query", name, required, components.resolveType(type), description)
         val builder = ParameterBuilder(parameter)
         content?.let { it(builder) }
         endpoint.parameters.add(parameter)
